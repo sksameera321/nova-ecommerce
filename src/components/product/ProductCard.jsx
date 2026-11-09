@@ -57,7 +57,8 @@ export const ProductCard = ({ product }) => {
           paddingTop: '125%', // 4:5 fashion aspect ratio
           backgroundColor: 'var(--bg-secondary)',
           overflow: 'hidden',
-          display: 'block'
+          display: 'block',
+          boxShadow: 'inset 0 2px 6px rgba(0, 0, 0, 0.12)'
         }}
       >
         <img
@@ -107,18 +108,18 @@ export const ProductCard = ({ product }) => {
             position: 'absolute',
             top: '12px',
             right: '12px',
-            width: '36px',
-            height: '36px',
+            width: '38px',
+            height: '38px',
             borderRadius: 'var(--radius-full)',
-            backgroundColor: 'var(--bg-card)',
+            background: 'radial-gradient(circle at 35% 30%, var(--bg-card) 0%, var(--bg-secondary) 100%)',
             color: inWishlist ? 'var(--accent-terracotta)' : 'var(--text-secondary)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: 'var(--shadow-sm)',
-            border: inWishlist ? '1px solid var(--accent-terracotta)' : '1px solid var(--border-light)',
+            boxShadow: 'var(--skeuo-icon-btn)',
+            border: inWishlist ? '1px solid var(--accent-terracotta)' : '1px solid var(--border-medium)',
             zIndex: 2,
-            transition: 'all var(--transition-fast)'
+            transition: 'all 120ms cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         >
           <Heart size={16} fill={inWishlist ? 'currentColor' : 'none'} />

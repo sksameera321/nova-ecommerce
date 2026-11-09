@@ -193,9 +193,13 @@ export const FilterSidebar = ({
             style={{
               position: 'absolute',
               inset: 0,
-              backgroundColor: inStockOnly ? 'var(--accent-gold)' : 'var(--bg-tertiary)',
+              background: inStockOnly
+                ? 'linear-gradient(180deg, #9E7934 0%, #C5A265 60%, #E2C488 100%)'
+                : 'var(--bg-tertiary)',
               borderRadius: 'var(--radius-full)',
-              transition: 'background-color var(--transition-fast)'
+              boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.22), 0 1px 0 rgba(255, 255, 255, 0.85)',
+              border: '1px solid rgba(0, 0, 0, 0.15)',
+              transition: 'background 160ms ease'
             }}
           >
             <span
@@ -204,11 +208,13 @@ export const FilterSidebar = ({
                 content: "''",
                 height: '18px',
                 width: '18px',
-                left: inStockOnly ? '20px' : '3px',
-                bottom: '3px',
-                backgroundColor: 'white',
+                left: inStockOnly ? '20px' : '2px',
+                bottom: '2px',
+                background: 'radial-gradient(circle at 35% 30%, #FFFFFF 0%, #EFEBE4 70%, #D4CEBF 100%)',
+                boxShadow: '0 2px 5px rgba(0, 0, 0, 0.35), inset 0 1px 0 #FFF, inset 0 -1px 0 rgba(0, 0, 0, 0.2)',
+                border: '1px solid rgba(0, 0, 0, 0.12)',
                 borderRadius: '50%',
-                transition: 'left var(--transition-fast)'
+                transition: 'left 160ms cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             />
           </span>

@@ -214,30 +214,44 @@ export const CartPage = () => {
                         alignItems: 'center',
                         border: '1px solid var(--border-medium)',
                         borderRadius: 'var(--radius-xs)',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        background: 'var(--bg-secondary)',
+                        boxShadow: 'var(--skeuo-debossed)'
                       }}
                     >
                       <button
                         onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
-                        style={{ padding: '6px 10px', color: 'var(--text-primary)' }}
+                        style={{
+                          padding: '6px 10px',
+                          color: 'var(--text-primary)',
+                          background: 'linear-gradient(180deg, var(--bg-card) 0%, var(--bg-tertiary) 100%)',
+                          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.85)'
+                        }}
                         aria-label="Decrease quantity"
                       >
                         <Minus size={14} />
                       </button>
                       <span
                         style={{
-                          padding: '0 8px',
+                          padding: '0 10px',
                           fontSize: '0.9rem',
                           fontWeight: 700,
-                          minWidth: '24px',
-                          textAlign: 'center'
+                          minWidth: '28px',
+                          textAlign: 'center',
+                          background: 'var(--bg-card)',
+                          boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)'
                         }}
                       >
                         {item.quantity}
                       </span>
                       <button
                         onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
-                        style={{ padding: '6px 10px', color: 'var(--text-primary)' }}
+                        style={{
+                          padding: '6px 10px',
+                          color: 'var(--text-primary)',
+                          background: 'linear-gradient(180deg, var(--bg-card) 0%, var(--bg-tertiary) 100%)',
+                          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.85)'
+                        }}
                         aria-label="Increase quantity"
                       >
                         <Plus size={14} />

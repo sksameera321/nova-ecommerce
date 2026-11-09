@@ -311,13 +311,18 @@ export const ProductDetailPage = () => {
                         style={{
                           padding: '10px 18px',
                           borderRadius: 'var(--radius-xs)',
-                          border: isSelected ? '1px solid var(--text-primary)' : '1px solid var(--border-medium)',
-                          backgroundColor: isSelected ? 'var(--text-primary)' : 'var(--bg-card)',
-                          color: isSelected ? 'var(--bg-primary)' : 'var(--text-primary)',
+                          border: isSelected ? '1px solid #141312' : '1px solid var(--border-medium)',
+                          background: isSelected
+                            ? 'linear-gradient(180deg, #2B2927 0%, #151413 100%)'
+                            : 'linear-gradient(180deg, var(--bg-card) 0%, var(--bg-secondary) 100%)',
+                          color: isSelected ? '#FAF8F5' : 'var(--text-primary)',
+                          boxShadow: isSelected
+                            ? 'inset 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.85)'
+                            : '0 2px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95)',
                           fontSize: '0.85rem',
-                          fontWeight: 600,
+                          fontWeight: 700,
                           cursor: 'pointer',
-                          transition: 'all var(--transition-fast)'
+                          transition: 'all 120ms ease'
                         }}
                       >
                         {v}
@@ -342,17 +347,19 @@ export const ProductDetailPage = () => {
                         key={c.name}
                         onClick={() => setSelectedColor(c.name)}
                         style={{
-                          width: '34px',
-                          height: '34px',
+                          width: '36px',
+                          height: '36px',
                           borderRadius: '50%',
                           backgroundColor: c.hex,
                           border: isSelected ? '2px solid var(--accent-gold)' : '1px solid var(--border-medium)',
-                          boxShadow: isSelected ? '0 0 0 3px var(--accent-gold-bg)' : 'none',
+                          boxShadow: isSelected
+                            ? '0 0 0 3px var(--accent-gold-bg), 0 3px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.6)'
+                            : '0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.4)',
                           cursor: 'pointer',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          transition: 'all var(--transition-fast)'
+                          transition: 'all 120ms ease'
                         }}
                         title={c.name}
                       >
@@ -374,30 +381,50 @@ export const ProductDetailPage = () => {
                   border: '1px solid var(--border-medium)',
                   borderRadius: 'var(--radius-xs)',
                   height: '52px',
-                  backgroundColor: 'var(--bg-card)'
+                  backgroundColor: 'var(--bg-secondary)',
+                  boxShadow: 'var(--skeuo-debossed)',
+                  overflow: 'hidden'
                 }}
               >
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  style={{ padding: '0 14px', height: '100%', color: 'var(--text-primary)' }}
+                  style={{
+                    padding: '0 16px',
+                    height: '100%',
+                    color: 'var(--text-primary)',
+                    background: 'linear-gradient(180deg, var(--bg-card) 0%, var(--bg-tertiary) 100%)',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.85)'
+                  }}
                   aria-label="Decrease quantity"
                 >
                   <Minus size={15} />
                 </button>
                 <span
                   style={{
-                    padding: '0 12px',
-                    fontSize: '1rem',
+                    padding: '0 14px',
+                    fontSize: '1.05rem',
                     fontWeight: 700,
-                    minWidth: '32px',
-                    textAlign: 'center'
+                    minWidth: '38px',
+                    textAlign: 'center',
+                    background: 'var(--bg-card)',
+                    boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
                 >
                   {quantity}
                 </span>
                 <button
                   onClick={() => setQuantity((q) => q + 1)}
-                  style={{ padding: '0 14px', height: '100%', color: 'var(--text-primary)' }}
+                  style={{
+                    padding: '0 16px',
+                    height: '100%',
+                    color: 'var(--text-primary)',
+                    background: 'linear-gradient(180deg, var(--bg-card) 0%, var(--bg-tertiary) 100%)',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.85)'
+                  }}
                   aria-label="Increase quantity"
                 >
                   <Plus size={15} />

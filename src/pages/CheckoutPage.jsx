@@ -376,8 +376,14 @@ export const CheckoutPage = () => {
                         padding: '1.25rem',
                         borderRadius: 'var(--radius-xs)',
                         border: formData.deliveryMethod === option.id ? '2px solid var(--accent-gold)' : '1px solid var(--border-medium)',
-                        backgroundColor: formData.deliveryMethod === option.id ? 'var(--accent-gold-bg)' : 'var(--bg-secondary)',
-                        cursor: 'pointer'
+                        background: formData.deliveryMethod === option.id
+                          ? 'var(--accent-gold-bg)'
+                          : 'linear-gradient(180deg, var(--bg-card) 0%, var(--bg-secondary) 100%)',
+                        boxShadow: formData.deliveryMethod === option.id
+                          ? 'inset 0 1px 3px rgba(197, 162, 101, 0.3), 0 2px 5px rgba(0, 0, 0, 0.06)'
+                          : '0 2px 4px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.85)',
+                        cursor: 'pointer',
+                        transition: 'all 140ms ease'
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
