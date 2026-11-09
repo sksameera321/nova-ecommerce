@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, X, ArrowRight } from 'lucide-react';
 import { getAllProducts } from '../../services/api';
+import { formatINR } from '../../utils/currency';
 
 export const SearchModal = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
@@ -234,7 +235,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                     </div>
                   </div>
                   <div style={{ fontWeight: 700, color: 'var(--accent-gold)', fontSize: '0.95rem' }}>
-                    ${product.price.toFixed(2)}
+                    {formatINR(product.price)}
                   </div>
                 </div>
               ))}

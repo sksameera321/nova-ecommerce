@@ -4,6 +4,7 @@ import { getProductById, getRelatedProducts } from '../services/api';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { ProductCard } from '../components/product/ProductCard';
+import { formatINR } from '../utils/currency';
 import {
   Star,
   Heart,
@@ -277,15 +278,15 @@ export const ProductDetailPage = () => {
               }}
             >
               <span style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-                ${product.price.toFixed(2)}
+                {formatINR(product.price)}
               </span>
               {product.originalPrice > product.price && (
                 <>
                   <span style={{ fontSize: '1.15rem', color: 'var(--text-muted)', textDecoration: 'line-through' }}>
-                    ${product.originalPrice.toFixed(2)}
+                    {formatINR(product.originalPrice)}
                   </span>
                   <span className="badge badge-gold" style={{ fontSize: '0.75rem' }}>
-                    Save ${(product.originalPrice - product.price).toFixed(2)}
+                    Save {formatINR(product.originalPrice - product.price)}
                   </span>
                 </>
               )}
@@ -444,7 +445,7 @@ export const ProductDetailPage = () => {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Truck size={16} color="var(--accent-gold)" />
-                <span>Complimentary Delivery &gt;$150</span>
+                <span>Complimentary Delivery &gt;₹5,000</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <ShieldCheck size={16} color="var(--accent-gold)" />

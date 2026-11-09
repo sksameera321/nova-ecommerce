@@ -1,6 +1,7 @@
 import React from 'react';
 import { SlidersHorizontal, RotateCcw } from 'lucide-react';
 import { CURATED_CATEGORIES } from '../../services/api';
+import { formatINR } from '../../utils/currency';
 
 export const FilterSidebar = ({
   category,
@@ -124,14 +125,14 @@ export const FilterSidebar = ({
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span className="form-label">Price Ceiling</span>
           <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
-            ${priceRange}
+            {formatINR(priceRange)}
           </span>
         </div>
         <input
           type="range"
-          min="10"
-          max="1500"
-          step="10"
+          min="500"
+          max="125000"
+          step="500"
           value={priceRange}
           onChange={(e) => onPriceRangeChange(Number(e.target.value))}
           style={{
@@ -150,9 +151,9 @@ export const FilterSidebar = ({
             marginTop: '4px'
           }}
         >
-          <span>$10</span>
-          <span>$750</span>
-          <span>$1,500+</span>
+          <span>₹500</span>
+          <span>₹60,000</span>
+          <span>₹1,25,000+</span>
         </div>
       </div>
 

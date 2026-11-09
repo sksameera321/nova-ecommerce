@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { formatINR } from '../utils/currency';
 import { ShieldCheck, Lock, CreditCard, Truck, Check, ArrowRight, ArrowLeft } from 'lucide-react';
 
 export const CheckoutPage = () => {
@@ -348,21 +349,21 @@ export const CheckoutPage = () => {
                       id: 'standard',
                       title: 'Standard Climate-Controlled Courier',
                       time: '3–5 Business Days',
-                      price: shippingFee === 0 ? 'Complimentary ($0.00)' : `$${shippingFee.toFixed(2)}`,
+                      price: shippingFee === 0 ? 'Complimentary (₹0)' : formatINR(shippingFee),
                       desc: 'Discreet luxury packaging with signature required upon handover.'
                     },
                     {
                       id: 'express',
                       title: 'Priority Atelier Air Courier',
                       time: '1–2 Business Days',
-                      price: '+$25.00',
+                      price: '+₹1,500',
                       desc: 'Express flight routing with priority dispatch from Milan boutique.'
                     },
                     {
                       id: 'white-glove',
                       title: 'White-Glove Private Courier',
                       time: 'Direct Scheduled Appointment',
-                      price: '+$50.00',
+                      price: '+₹3,500',
                       desc: 'Hand-delivered by an authorized NOVA Atelier representative.'
                     }
                   ].map((option) => (
@@ -500,7 +501,7 @@ export const CheckoutPage = () => {
                     <ArrowLeft size={16} /> Back to Delivery
                   </button>
                   <button onClick={handleCompleteOrder} className="btn btn-gold" style={{ padding: '1rem 2.5rem' }}>
-                    Authorize Simulated Order (${total.toFixed(2)}) &rarr;
+                    Authorize Simulated Order ({formatINR(total)}) &rarr;
                   </button>
                 </div>
               </div>
@@ -567,7 +568,7 @@ export const CheckoutPage = () => {
                       </div>
                     </div>
                     <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {formatINR(item.price * item.quantity)}
                     </div>
                   </div>
                 ))}
@@ -577,21 +578,21 @@ export const CheckoutPage = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.85rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>{formatINR(subtotal)}</span>
                 </div>
                 {discountAmount > 0 && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--accent-gold)' }}>
                     <span>Promotion Discount</span>
-                    <span>-${discountAmount.toFixed(2)}</span>
+                    <span>-{formatINR(discountAmount)}</span>
                   </div>
                 )}
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
                   <span>Courier Delivery</span>
-                  <span>{shippingFee === 0 ? 'Complimentary' : `$${shippingFee.toFixed(2)}`}</span>
+                  <span>{shippingFee === 0 ? 'Complimentary' : formatINR(shippingFee)}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
-                  <span>Estimated Tax (8%)</span>
-                  <span>${taxAmount.toFixed(2)}</span>
+                  <span>Estimated Tax (18% GST)</span>
+                  <span>{formatINR(taxAmount)}</span>
                 </div>
                 <div
                   style={{
@@ -606,7 +607,7 @@ export const CheckoutPage = () => {
                   }}
                 >
                   <span>Grand Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>{formatINR(total)}</span>
                 </div>
               </div>
             </div>

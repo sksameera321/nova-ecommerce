@@ -102,7 +102,7 @@ nova-ecommerce/
 ### A. Dynamic Product Discovery & Catalog
 - **REST API Integration:** Fetches verified product data from the live DummyJSON Products API.
 - **Instant Search Modal:** Triggered via header icon or global keyboard shortcut (`Cmd/Ctrl + K`), featuring debounced queries and instant thumbnail suggestions.
-- **Multi-Faceted Filtering:** Real-time combination of category filters, price range slider ($10 to $1,500), in-stock only toggle, and sorting algorithms (Price Low/High, Rating, Greatest Discount, Alphabetical).
+- **Multi-Faceted Filtering:** Real-time combination of category filters, price range slider (₹500 to ₹1,25,000), in-stock only toggle, and sorting algorithms (Price Low/High, Rating, Greatest Discount, Alphabetical).
 - **URL Synchronization:** Category and search queries persist into browser history and shareable URL query parameters (`/#/shop?category=mens-watches`).
 
 ### B. Interactive Product Details Page
@@ -115,12 +115,12 @@ nova-ecommerce/
 
 ### C. Shopping Bag & Promotional Engine
 - **Slide-Over Bag Drawer & Dedicated Page:** Patrons can manage their cart from anywhere in the application.
-- **Free Shipping Meter:** Dynamic progress bar calculating remaining amount needed to reach complimentary express shipping ($150 threshold).
+- **Free Shipping Meter:** Dynamic progress bar calculating remaining amount needed to reach complimentary express shipping (₹5,000 threshold).
 - **Promo Code Engine:** Real-time validation supporting:
   - `NOVA10`: 10% off entire order
-  - `VIP20`: 20% off orders over $200
+  - `VIP20`: 20% off orders over ₹15,000
   - `FREESHIP`: 100% off standard shipping
-- **Financial Calculations:** Deterministic calculation of subtotal, discounts, shipping fees, estimated sales tax (8%), and grand total.
+- **Financial Calculations:** Deterministic calculation of subtotal, discounts, shipping fees, estimated luxury tax (18% GST), and grand total.
 - **LocalStorage Persistence:** Bag contents survive page refreshes and browser restarts.
 
 ### D. 3-Step Simulated Checkout

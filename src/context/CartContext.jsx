@@ -1,17 +1,23 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { useToast } from './ToastContext';
+import {
+  FREE_SHIPPING_THRESHOLD_INR,
+  STANDARD_SHIPPING_FEE_INR,
+  GST_RATE,
+  formatINR
+} from '../utils/currency';
 
 const CartContext = createContext(null);
 const STORAGE_KEY = 'nova_cart_items';
 const COUPON_STORAGE_KEY = 'nova_applied_coupon';
-const FREE_SHIPPING_THRESHOLD = 150.0;
-const STANDARD_SHIPPING_FEE = 15.0;
-const ESTIMATED_TAX_RATE = 0.08;
+const FREE_SHIPPING_THRESHOLD = FREE_SHIPPING_THRESHOLD_INR; // ₹5,000
+const STANDARD_SHIPPING_FEE = STANDARD_SHIPPING_FEE_INR; // ₹499
+const ESTIMATED_TAX_RATE = GST_RATE; // 18% GST
 
 // Available promotional coupons
 const PROMO_CODES = {
   NOVA10: { code: 'NOVA10', type: 'percentage', value: 10, label: '10% Atelier Welcome Discount' },
-  VIP20: { code: 'VIP20', type: 'percentage', value: 20, minSubtotal: 200, label: '20% VIP Atelier Discount' },
+  VIP20: { code: 'VIP20', type: 'percentage', value: 20, minSubtotal: 15000, label: '20% VIP Atelier Discount (over ₹15,000)' },
   FREESHIP: { code: 'FREESHIP', type: 'shipping', value: 100, label: 'Complimentary Express Delivery' }
 };
 
@@ -150,8 +156,8 @@ export const CartProvider = ({ children }) => {
     }
 
     if (promo.minSubtotal && subtotal < promo.minSubtotal) {
-      setCouponError(`Code requires a minimum subtotal of $${promo.minSubtotal}.`);
-      showToast(`Requires minimum subtotal of $${promo.minSubtotal}`, 'error');
+      setCouponError(`Code requires a minimum subtotal of ${formatINR(promo.minSubtotal)}.`);
+      showToast(`Requires minimum subtotal of ${formatINR(promo.minSubtotal)}`, 'error');
       return false;
     }
 
@@ -230,7 +236,8 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
-        clearCart
+        clearCart,
+        formatPrice: formatINR
       }}
     >
       {children}

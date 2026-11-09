@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getFilteredProducts, CURATED_CATEGORIES } from '../services/api';
 import { ProductGrid } from '../components/product/ProductGrid';
 import { FilterSidebar } from '../components/product/FilterSidebar';
+import { formatINR } from '../utils/currency';
 import { Search, SlidersHorizontal, X, RotateCcw } from 'lucide-react';
 
 export const ShopPage = () => {
@@ -16,7 +17,7 @@ export const ShopPage = () => {
   const [category, setCategory] = useState(initialCategory);
   const [search, setSearch] = useState(initialSearch);
   const [searchInput, setSearchInput] = useState(initialSearch);
-  const [priceRange, setPriceRange] = useState(1500);
+  const [priceRange, setPriceRange] = useState(125000);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [sortBy, setSortBy] = useState(initialSort);
 
@@ -66,7 +67,7 @@ export const ShopPage = () => {
     setCategory('all');
     setSearch('');
     setSearchInput('');
-    setPriceRange(1500);
+    setPriceRange(125000);
     setInStockOnly(false);
     setSortBy('featured');
     setSearchParams(new URLSearchParams());
@@ -101,7 +102,7 @@ export const ShopPage = () => {
     let count = 0;
     if (category !== 'all') count++;
     if (search.trim()) count++;
-    if (priceRange < 1500) count++;
+    if (priceRange < 125000) count++;
     if (inStockOnly) count++;
     if (sortBy !== 'featured') count++;
     return count;
@@ -254,10 +255,10 @@ export const ShopPage = () => {
                 </button>
               </span>
             )}
-            {priceRange < 1500 && (
+            {priceRange < 125000 && (
               <span className="badge badge-gold" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                Under ${priceRange}
-                <button onClick={() => setPriceRange(1500)} style={{ cursor: 'pointer', display: 'flex' }}>
+                Under {formatINR(priceRange)}
+                <button onClick={() => setPriceRange(125000)} style={{ cursor: 'pointer', display: 'flex' }}>
                   <X size={12} />
                 </button>
               </span>

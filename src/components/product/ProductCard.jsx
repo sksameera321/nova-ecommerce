@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Heart, ShoppingBag, Star } from 'lucide-react';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
+import { formatINR } from '../../utils/currency';
 
 export const ProductCard = ({ product }) => {
   const { isInWishlist, toggleWishlist } = useWishlist();
@@ -194,7 +195,7 @@ export const ProductCard = ({ product }) => {
         {/* Price & Stock */}
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginTop: 'auto', paddingTop: '6px' }}>
           <span style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-            ${product.price.toFixed(2)}
+            {formatINR(product.price)}
           </span>
           {product.originalPrice > product.price && (
             <span
@@ -204,7 +205,7 @@ export const ProductCard = ({ product }) => {
                 textDecoration: 'line-through'
               }}
             >
-              ${product.originalPrice.toFixed(2)}
+              {formatINR(product.originalPrice)}
             </span>
           )}
         </div>

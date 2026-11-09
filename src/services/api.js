@@ -4,6 +4,8 @@
  * Developer: Sameera Bhanu
  */
 
+import { convertToINR } from '../utils/currency';
+
 const BASE_URL = 'https://dummyjson.com/products';
 
 // Curated luxury & lifestyle categories
@@ -36,11 +38,13 @@ let cachedProducts = null;
 export const normalizeProduct = (item) => {
   if (!item) return null;
 
-  // Calculate discount price
+  // Calculate INR prices
+  const rawPrice = Number(item.price) || 0;
+  const inrPrice = convertToINR(rawPrice);
   const discount = Number(item.discountPercentage) || 0;
-  const originalPrice = discount > 0 
-    ? Number((item.price / (1 - discount / 100)).toFixed(2))
-    : item.price;
+  const inrOriginalPrice = discount > 0 
+    ? Math.round(inrPrice / (1 - discount / 100))
+    : inrPrice;
 
   // Curate sizes/variants based on category
   let variants = ['Default'];
@@ -66,8 +70,8 @@ export const normalizeProduct = (item) => {
     title: item.title,
     description: item.description,
     category: item.category,
-    price: Number(item.price) || 0,
-    originalPrice,
+    price: inrPrice,
+    originalPrice: inrOriginalPrice,
     discountPercentage: discount,
     rating: Number(item.rating) || 4.5,
     reviewCount: Array.isArray(item.reviews) ? item.reviews.length : 12,
@@ -124,7 +128,7 @@ export const getFilteredProducts = async ({
   category = 'all',
   search = '',
   minPrice = 0,
-  maxPrice = 2000,
+  maxPrice = 150000,
   sortBy = 'featured',
   inStockOnly = false
 } = {}) => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { formatINR } from '../utils/currency';
 import { Trash2, Plus, Minus, ArrowRight, ShoppingBag, Sparkles, Tag, X } from 'lucide-react';
 
 export const CartPage = () => {
@@ -91,7 +92,7 @@ export const CartPage = () => {
             <Sparkles size={16} color="var(--accent-gold)" />
             {amountToFreeShipping > 0 ? (
               <span>
-                Add <strong style={{ color: 'var(--accent-gold)' }}>${amountToFreeShipping.toFixed(2)}</strong> more for Complimentary Global Express Delivery
+                Add <strong style={{ color: 'var(--accent-gold)' }}>{formatINR(amountToFreeShipping)}</strong> more for Complimentary Global Express Delivery
               </span>
             ) : (
               <span style={{ color: 'var(--accent-emerald)' }}>
@@ -202,7 +203,7 @@ export const CartPage = () => {
 
                   {/* Unit price */}
                   <div style={{ fontWeight: 600 }}>
-                    ${item.price.toFixed(2)}
+                    {formatINR(item.price)}
                   </div>
 
                   {/* Stepper */}
@@ -246,7 +247,7 @@ export const CartPage = () => {
 
                   {/* Line Total */}
                   <div style={{ textAlign: 'right', fontWeight: 700, color: 'var(--accent-gold)' }}>
-                    ${(item.price * item.quantity).toFixed(2)}
+                    {formatINR(item.price * item.quantity)}
                   </div>
 
                   {/* Delete Button */}
@@ -358,21 +359,21 @@ export const CartPage = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.9rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>{formatINR(subtotal)}</span>
                 </div>
                 {discountAmount > 0 && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--accent-gold)', fontWeight: 600 }}>
                     <span>Promotion Discount</span>
-                    <span>-${discountAmount.toFixed(2)}</span>
+                    <span>-{formatINR(discountAmount)}</span>
                   </div>
                 )}
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
                   <span>Estimated Global Courier</span>
-                  <span>{shippingFee === 0 ? 'Complimentary' : `$${shippingFee.toFixed(2)}`}</span>
+                  <span>{shippingFee === 0 ? 'Complimentary' : formatINR(shippingFee)}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
-                  <span>Estimated Tax (8%)</span>
-                  <span>${taxAmount.toFixed(2)}</span>
+                  <span>Estimated Tax (18% GST)</span>
+                  <span>{formatINR(taxAmount)}</span>
                 </div>
                 <div
                   style={{
@@ -387,7 +388,7 @@ export const CartPage = () => {
                   }}
                 >
                   <span>Total Amount</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>{formatINR(total)}</span>
                 </div>
               </div>
 

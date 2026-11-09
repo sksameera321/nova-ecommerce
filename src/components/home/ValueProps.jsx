@@ -11,7 +11,7 @@ export const ValueProps = () => {
     {
       icon: Truck,
       title: 'Complimentary Global Courier',
-      description: 'Dispatched in discreet, climate-controlled packaging within 24 hours on orders over $150.'
+      description: 'Dispatched in discreet, climate-controlled packaging within 24 hours on orders over ₹5,000.'
     },
     {
       icon: RotateCcw,

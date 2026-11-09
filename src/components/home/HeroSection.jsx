@@ -146,10 +146,10 @@ export const HeroSection = () => {
             </div>
             <div>
               <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 600, color: '#C5A265' }}>
-                $0
+                ₹0
               </div>
               <div style={{ fontSize: '0.75rem', color: '#A19C91', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                Express Delivery &gt;$150
+                Express Delivery &gt;₹5,000
               </div>
             </div>
           </div>

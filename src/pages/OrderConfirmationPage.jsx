@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { formatINR } from '../utils/currency';
 import { CheckCircle2, Printer, ArrowRight, Package, Clock, ShieldCheck } from 'lucide-react';
 
 export const OrderConfirmationPage = () => {
@@ -179,7 +180,7 @@ export const OrderConfirmationPage = () => {
                     </div>
                   </div>
                   <div style={{ fontWeight: 700, fontSize: '1rem' }}>
-                    ${(item.price * item.quantity).toFixed(2)}
+                    {formatINR(item.price * item.quantity)}
                   </div>
                 </div>
               ))
@@ -204,21 +205,21 @@ export const OrderConfirmationPage = () => {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
               <span>Subtotal</span>
-              <span>${order?.subtotal?.toFixed(2) || '0.00'}</span>
+              <span>{formatINR(order?.subtotal || 0)}</span>
             </div>
             {order?.discountAmount > 0 && (
               <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--accent-gold)', fontWeight: 600 }}>
                 <span>Promotion Discount</span>
-                <span>-${order.discountAmount.toFixed(2)}</span>
+                <span>-{formatINR(order.discountAmount)}</span>
               </div>
             )}
             <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
               <span>Courier Delivery</span>
-              <span>{order?.shippingFee === 0 ? 'Complimentary' : `$${order?.shippingFee?.toFixed(2)}`}</span>
+              <span>{order?.shippingFee === 0 ? 'Complimentary' : formatINR(order?.shippingFee || 0)}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
-              <span>Estimated Tax (8%)</span>
-              <span>${order?.taxAmount?.toFixed(2) || '0.00'}</span>
+              <span>Estimated Tax (18% GST)</span>
+              <span>{formatINR(order?.taxAmount || 0)}</span>
             </div>
             <div
               style={{
@@ -233,7 +234,7 @@ export const OrderConfirmationPage = () => {
               }}
             >
               <span>Total Paid (Simulated)</span>
-              <span>${order?.total?.toFixed(2) || '0.00'}</span>
+              <span>{formatINR(order?.total || 0)}</span>
             </div>
           </div>
 

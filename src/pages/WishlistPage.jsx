@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
+import { formatINR } from '../utils/currency';
 import { Heart, ShoppingBag, Trash2, ArrowRight } from 'lucide-react';
 
 export const WishlistPage = () => {
@@ -140,7 +141,7 @@ export const WishlistPage = () => {
                 </Link>
 
                 <div style={{ fontWeight: 700, fontSize: '1.1rem', marginTop: 'auto', paddingTop: '6px' }}>
-                  ${product.price.toFixed(2)}
+                  {formatINR(product.price)}
                 </div>
 
                 <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>

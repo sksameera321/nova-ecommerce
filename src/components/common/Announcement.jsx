@@ -29,7 +29,7 @@ export const Announcement = () => {
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', textAlign: 'center' }}>
         <Sparkles size={14} color="#C5A265" />
         <span>
-          Complimentary Worldwide Express Delivery on orders over $150 &bull; Use Code{' '}
+          Complimentary Worldwide Express Delivery on orders over ₹5,000 &bull; Use Code{' '}
           <strong style={{ color: '#C5A265', letterSpacing: '0.15em' }}>NOVA10</strong> for 10% off
         </span>
       </div>

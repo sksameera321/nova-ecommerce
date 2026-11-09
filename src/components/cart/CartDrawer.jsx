@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import { formatINR } from '../../utils/currency';
 import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, Sparkles, Tag } from 'lucide-react';
 
 export const CartDrawer = () => {
@@ -108,7 +109,7 @@ export const CartDrawer = () => {
             <Sparkles size={14} color="var(--accent-gold)" />
             {amountToFreeShipping > 0 ? (
               <span>
-                Add <strong style={{ color: 'var(--accent-gold)' }}>${amountToFreeShipping.toFixed(2)}</strong> for Complimentary Express Delivery
+                Add <strong style={{ color: 'var(--accent-gold)' }}>{formatINR(amountToFreeShipping)}</strong> for Complimentary Express Delivery
               </span>
             ) : (
               <span style={{ color: 'var(--accent-emerald)' }}>
@@ -282,7 +283,7 @@ export const CartDrawer = () => {
                     {/* Price */}
                     <div style={{ textAlign: 'right' }}>
                       <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>
-                        ${(item.price * item.quantity).toFixed(2)}
+                        {formatINR(item.price * item.quantity)}
                       </span>
                     </div>
                   </div>
@@ -374,21 +375,21 @@ export const CartDrawer = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>{formatINR(subtotal)}</span>
               </div>
               {discountAmount > 0 && (
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--accent-gold)' }}>
                   <span>Discount</span>
-                  <span>-${discountAmount.toFixed(2)}</span>
+                  <span>-{formatINR(discountAmount)}</span>
                 </div>
               )}
               <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
-                <span>Estimated Shipping</span>
-                <span>{shippingFee === 0 ? 'Complimentary' : `$${shippingFee.toFixed(2)}`}</span>
+                <span>Estimated Courier</span>
+                <span>{shippingFee === 0 ? 'Complimentary' : formatINR(shippingFee)}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
-                <span>Estimated Tax (8%)</span>
-                <span>${taxAmount.toFixed(2)}</span>
+                <span>Estimated Tax (18% GST)</span>
+                <span>{formatINR(taxAmount)}</span>
               </div>
               <div
                 style={{
@@ -403,7 +404,7 @@ export const CartDrawer = () => {
                 }}
               >
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{formatINR(total)}</span>
               </div>
             </div>
 

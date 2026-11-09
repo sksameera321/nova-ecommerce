@@ -261,7 +261,7 @@ export const Footer = () => {
           <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
             <span>Curated with DummyJSON REST API</span>
             <span>&bull;</span>
-            <span>USD ($)</span>
+            <span style={{ color: '#C5A265', fontWeight: 600 }}>INR (₹)</span>
           </div>
         </div>
       </div>
